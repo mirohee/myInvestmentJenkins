@@ -2,10 +2,18 @@ pipeline {
   agent any
 
   stages {
-    stage('Hello') {
+    stage('Check OUT') {
       steps {
-        echo 'Hello World' }
+        git branch: 'master', credentialsId: 'mirohee', url: https://github.com/mirohee/myInvestmentJenkins.git
+
+      }
+    }
+stage('Build') {
+      steps {
+        bat 'mvn clean install'
       }
 
     }
+
+  }
 }
